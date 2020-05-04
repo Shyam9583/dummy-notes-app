@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/CardView.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:padding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/noteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="@string/title_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/noteDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/noteTitle"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/description_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/notePriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/noteTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:text="@string/priority_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
