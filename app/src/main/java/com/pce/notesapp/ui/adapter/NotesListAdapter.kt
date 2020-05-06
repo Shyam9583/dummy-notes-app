@@ -21,7 +21,7 @@ class NotesListAdapter :
         }
     }) {
 
-    var listener: OnItemClickListener? = null
+    private var listener: (Note) -> Unit = {}
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Note) = with(itemView) {
@@ -39,15 +39,13 @@ class NotesListAdapter :
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.bind(getItem(position))
-        if (position != RecyclerView.NO_POSITION) {
-            holder.itemView.setOnClickListener {
-                listener?.onClick(getItem(position))
-            }
+        holder.itemView.setOnClickListener {
+            listener(getItem(position))
         }
     }
 
-    interface OnItemClickListener {
-        fun onClick(item: Note)
+    fun setItemOnClickListener(task: (Note) -> Unit) {
+        listener = task
     }
 }
 

@@ -7,16 +7,16 @@ import androidx.room.RoomDatabase
 import com.pce.notesapp.model.Note
 import com.pce.notesapp.repository.dao.NotesDao
 
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class], version = 3)
 abstract class NotesDatabase : RoomDatabase() {
-
     abstract fun notesDao(): NotesDao
 
     companion object {
         @Volatile
         private var instance: NotesDatabase? = null
-        private val LOCK = Any()
         private const val DATABASE_NAME = "notes_database"
+        private val LOCK = Any()
+
         operator fun invoke(context: Context) = instance
             ?: synchronized(LOCK) {
                 buildDatabase(
@@ -30,4 +30,5 @@ abstract class NotesDatabase : RoomDatabase() {
                 .fallbackToDestructiveMigration()
                 .build()
     }
+
 }

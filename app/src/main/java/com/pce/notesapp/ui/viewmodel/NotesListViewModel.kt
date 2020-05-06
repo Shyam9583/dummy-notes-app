@@ -2,26 +2,25 @@ package com.pce.notesapp.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.pce.notesapp.model.Note
 import com.pce.notesapp.repository.NotesRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class NotesListViewModel(application: Application) : AndroidViewModel(application) {
-    private val notes = MutableLiveData<List<Note>>()
     private val repo = NotesRepository(application)
-    private val context = Dispatchers.IO + SupervisorJob()
+    private val context = Dispatchers.IO + Job()
+    private lateinit var notes: LiveData<List<Note>>
 
     init {
-        CoroutineScope(context).launch {
-            notes.value = repo.selectAll()
+        runBlocking {
+            notes = withContext(context) {
+                repo.selectAll()
+            }
         }
     }
 
-    fun selectAll() = notes
+    fun getAllNotes(): LiveData<List<Note>> = notes
 
     fun insert(note: Note) {
         CoroutineScope(context).launch {

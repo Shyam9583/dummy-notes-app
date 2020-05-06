@@ -1,15 +1,13 @@
 package com.pce.notesapp.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.pce.notesapp.model.Note
 import com.pce.notesapp.repository.dao.NotesDao
 import com.pce.notesapp.repository.database.NotesDatabase
-import kotlinx.coroutines.SupervisorJob
 
-class NotesRepository(private val context: Context) {
-    private val dao: NotesDao by lazy { NotesDatabase(context).notesDao() }
-
-    private val job = SupervisorJob()
+class NotesRepository(context: Context) {
+    private val dao: NotesDao = NotesDatabase(context).notesDao()
 
     fun insert(note: Note) = dao.insertNote(note)
 
@@ -19,5 +17,5 @@ class NotesRepository(private val context: Context) {
 
     fun deleteAll() = dao.deleteAllNotes()
 
-    fun selectAll() = dao.selectAllNotes()
+    fun selectAll(): LiveData<List<Note>> = dao.selectAllNotes()
 }

@@ -9,9 +9,7 @@
         android:id="@+id/notesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/note_item">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/note_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton"

@@ -1,5 +1,6 @@
 package com.pce.notesapp.repository.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.pce.notesapp.model.Note
 
@@ -18,6 +19,6 @@ interface NotesDao {
     @Query("DELETE FROM notes_table")
     fun deleteAllNotes()
 
-    @Query("SELECT * FROM notes_table")
-    fun selectAllNotes(): List<Note>
+    @Query("SELECT * FROM notes_table ORDER BY priority DESC")
+    fun selectAllNotes(): LiveData<List<Note>>
 }

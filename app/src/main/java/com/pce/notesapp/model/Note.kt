@@ -10,5 +10,5 @@ data class Note(
     var priority: Int
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Long = -1
+    var id: Int? = null
 }
